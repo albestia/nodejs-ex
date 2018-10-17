@@ -5,14 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'npm install'
+                sh 'docker run -it --rm -v $PWD:/data -w /data node npm install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'npm test || true'
-                junit '**/target/*.xml'
+                sh 'docker run -it --rm -v $PWD:/data -w /data node npm test'
             }
         }
         stage('Deploy') {
