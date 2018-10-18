@@ -18,11 +18,6 @@ pipeline {
                 sh 'npm test'
             }
         }
-        post {
-            always {
-                junit 'test-results.xml'
-            }
-        }
         stage('Deploy') {
             when {
               expression {
@@ -32,6 +27,11 @@ pipeline {
             steps {
                 echo 'make publish...'
             }
+        }
+    }        
+    post {
+        always {
+            junit 'test-results.xml'
         }
     }
 }
