@@ -16,6 +16,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'npm test'
+                junit 'test-results.xml'
             }
         }
         stage('Deploy') {
@@ -29,9 +30,4 @@ pipeline {
             }
         }
     }        
-    post {
-        always {
-            junit 'test-results.xml'
-        }
-    }
 }
