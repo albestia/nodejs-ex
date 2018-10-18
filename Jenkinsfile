@@ -7,13 +7,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker run -it --rm -v $PWD:/data -w /data node npm install'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'docker run -it --rm -v $PWD:/data -w /data node npm test'
+                sh 'npm test'
             }
         }
         stage('Deploy') {
