@@ -18,6 +18,11 @@ pipeline {
                 sh 'npm test'
             }
         }
+        post {
+            always {
+                junit 'test-results.xml'
+            }
+        }
         stage('Deploy') {
             when {
               expression {
